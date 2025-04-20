@@ -1,0 +1,10 @@
+node_modules
+.git
+*.log
+*.DS_Store
+build
+dist
+coverage
+uploads
+tmp
+strapi-admin/.tmp
