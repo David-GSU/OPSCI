@@ -1,7 +1,7 @@
 # Projet OPSCI: Infrastructure complète avec objets connectés et architecture événementielle
 
 - Chen Maxime 21210804
-- Gu David
+- Gu David 21207803
 
 Ce projet met en place une architecture complète pour une plateforme de gestion de produits intégrant une base de données, un système d'événements et des objets connectés.
 
