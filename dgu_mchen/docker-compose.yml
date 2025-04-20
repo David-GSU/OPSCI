@@ -81,6 +81,9 @@ services:
       BROKER_3: kafka:9092
       TOPIC: event
       ERROR_TOPIC: errors
+      FILE_NAME: /opt/app/events.csv
+    volumes:
+        - ./event-producer/products.csv:/opt/app/events.csv
     depends_on:
       - kafka
     networks:
@@ -98,7 +101,7 @@ services:
       BROKER_2: kafka:9092
       BROKER_3: kafka:9092
       STRAPI_URL: http://strapi:1337
-      STRAPI_TOKEN: 9ad94210b50feb682424894b42671a880bad527c16daf6c1781e7f00c02f7d60d16b0e47ea5ebfa93b1f8bb6017ab838aed0f06edcbd0c25c747b3844f9d5a11f8c6a35140b06cbab0392993f2e2c86df95d57f17f39fd0b7caf0498d9b7c0d9b582d225adab6b0b7e3dc949c00734321e5a60dadbe7a3a111b8434bd0830876
+      STRAPI_TOKEN: bdc00138f6bc034f21a285f0a2103b17d7c15f93648fb80544624b0fbf79e3434d048ccc1a50519c2e60c3fad6b4729662eab931beacab54432d5c2f3f86adf0982a8451c9a7863edf61cd6eccb8968eb7b2cf5f178c353cc1de0c46480e5b553b4bdfb017d8318b525f066b6395956c2088f153970cc6c933ec7006aed90c4b
       TOPIC: event
       BEGINNING: "false"
       ERROR_TOPIC: errors
@@ -121,6 +124,9 @@ services:
       BROKER_3: kafka:9092
       TOPIC: product
       ERROR_TOPIC: errors
+      FILE_NAME: /opt/app/products.csv
+    volumes:
+        - ./product-producer/products.csv:/opt/app/products.csv
     depends_on:
       - kafka
     networks:
@@ -138,7 +144,7 @@ services:
       BROKER_2: kafka:9092
       BROKER_3: kafka:9092
       STRAPI_URL: http://strapi:1337
-      STRAPI_TOKEN: 9ad94210b50feb682424894b42671a880bad527c16daf6c1781e7f00c02f7d60d16b0e47ea5ebfa93b1f8bb6017ab838aed0f06edcbd0c25c747b3844f9d5a11f8c6a35140b06cbab0392993f2e2c86df95d57f17f39fd0b7caf0498d9b7c0d9b582d225adab6b0b7e3dc949c00734321e5a60dadbe7a3a111b8434bd0830876
+      STRAPI_TOKEN: bdc00138f6bc034f21a285f0a2103b17d7c15f93648fb80544624b0fbf79e3434d048ccc1a50519c2e60c3fad6b4729662eab931beacab54432d5c2f3f86adf0982a8451c9a7863edf61cd6eccb8968eb7b2cf5f178c353cc1de0c46480e5b553b4bdfb017d8318b525f066b6395956c2088f153970cc6c933ec7006aed90c4b
       TOPIC: product
       BEGINNING: "false"
       ERROR_TOPIC: errors
@@ -161,11 +167,14 @@ services:
       BROKER_3: kafka:9092
       TOPIC: stock
       ERROR_TOPIC: errors
+      FILE_NAME: /opt/app/stocks.csv
+    volumes:
+        - ./stock-producer/products.csv:/opt/app/stocks.csv
     depends_on:
       - kafka
     networks:
       - opsci-net
-    restart: unless-stopped
+
 
   stock-consumer:
     build:
@@ -178,7 +187,7 @@ services:
       BROKER_2: kafka:9092
       BROKER_3: kafka:9092
       STRAPI_URL: http://strapi:1337
-      STRAPI_TOKEN: 9ad94210b50feb682424894b42671a880bad527c16daf6c1781e7f00c02f7d60d16b0e47ea5ebfa93b1f8bb6017ab838aed0f06edcbd0c25c747b3844f9d5a11f8c6a35140b06cbab0392993f2e2c86df95d57f17f39fd0b7caf0498d9b7c0d9b582d225adab6b0b7e3dc949c00734321e5a60dadbe7a3a111b8434bd0830876
+      STRAPI_TOKEN: bdc00138f6bc034f21a285f0a2103b17d7c15f93648fb80544624b0fbf79e3434d048ccc1a50519c2e60c3fad6b4729662eab931beacab54432d5c2f3f86adf0982a8451c9a7863edf61cd6eccb8968eb7b2cf5f178c353cc1de0c46480e5b553b4bdfb017d8318b525f066b6395956c2088f153970cc6c933ec7006aed90c4b
       TOPIC: stock
       BEGINNING: "false"
       ERROR_TOPIC: errors
